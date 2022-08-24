@@ -22,9 +22,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpBridge() {
         val tvRemoteControl = RemoteControl(appliance = TV())
-        tvRemoteControl.turnOnControl()
+        tvRemoteControl.turnOn()
         val fancyVacuumCleanerRemoteControl = RemoteControl(appliance = VacuumCleaner())
-        fancyVacuumCleanerRemoteControl.turnOnControl()
+        fancyVacuumCleanerRemoteControl.turnOn()
     }
 
     private fun setUpBridge2() {
