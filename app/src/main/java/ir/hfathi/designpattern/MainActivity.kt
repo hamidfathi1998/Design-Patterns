@@ -1,9 +1,11 @@
 package ir.hfathi.designpattern
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import ir.hfathi.designpattern.behavioralPatterns.singletion.Singleton
 import ir.hfathi.designpattern.behavioralPatterns.visitor.*
+import ir.hfathi.designpattern.structuralPatterns.bridge.*
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,11 +13,45 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 //        setUpSingleton()
-        setUpVisitor()
+//        setUpVisitor()
+
+        setUpBridge()
+//        setUpBridge2()
+//        setUpBridge3()
+    }
+
+    private fun setUpBridge() {
+        val tvRemoteControl = RemoteControl(appliance = TV())
+        tvRemoteControl.turnOnControl()
+        val fancyVacuumCleanerRemoteControl = RemoteControl(appliance = VacuumCleaner())
+        fancyVacuumCleanerRemoteControl.turnOnControl()
+    }
+
+    private fun setUpBridge2() {
+        val redCircle: Shape = Circle(100, 100, 10, RedCircle())
+        redCircle.draw()
+
+        val blueCircle: Shape = Circle(100, 100, 10, BlueCircle())
+        blueCircle.draw()
+    }
+
+    private fun setUpBridge3() {
+        val tri: MShape = Triangle(RedColor())
+        tri.applyColorShape()
+
+        val tri2: MShape = Triangle(GreenColor())
+        tri2.applyColorShape()
+
+        val pen : MShape = Pentagon(RedColor())
+        pen.applyColorShape()
+
+        val pen2 : MShape = Pentagon(GreenColor())
+        pen2.applyColorShape()
     }
 
     private fun setUpVisitor() {
-        val planets = mutableListOf(PlanetAlderaan(), PlanetCoruscant(), PlanetTatooine(), MoonJedah())
+        val planets =
+            mutableListOf(PlanetAlderaan(), PlanetCoruscant(), PlanetTatooine(), MoonJedah())
         val visitor = NameVisitor()
         planets.forEach {
             it.accept(visitor)
