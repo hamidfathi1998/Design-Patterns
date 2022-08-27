@@ -3,6 +3,9 @@ package ir.hfathi.designpattern
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ir.hfathi.designpattern.behavioralPatterns.singletion.Singleton
+import ir.hfathi.designpattern.behavioralPatterns.state.AlertStateContext
+import ir.hfathi.designpattern.behavioralPatterns.state.Silent
+import ir.hfathi.designpattern.behavioralPatterns.state.Sound
 import ir.hfathi.designpattern.behavioralPatterns.visitor.*
 import ir.hfathi.designpattern.structuralPatterns.bridge.*
 
@@ -15,9 +18,22 @@ class MainActivity : AppCompatActivity() {
 //        setUpSingleton()
 //        setUpVisitor()
 
-        setUpBridge()
+//        setUpBridge()
 //        setUpBridge2()
 //        setUpBridge3()
+
+//        setUpState()
+    }
+
+    private fun setUpState() {
+        val stateContext = AlertStateContext()
+        stateContext.alertState()
+        stateContext.alertState()
+        stateContext.setState(Silent())
+        stateContext.alertState()
+        stateContext.alertState()
+        stateContext.setState(Sound())
+        stateContext.alertState()
     }
 
     private fun setUpBridge() {
