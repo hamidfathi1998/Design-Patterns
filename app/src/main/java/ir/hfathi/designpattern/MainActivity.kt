@@ -25,6 +25,7 @@ import ir.hfathi.designpattern.structuralPatterns.bridge.*
 import ir.hfathi.designpattern.structuralPatterns.composite.CompositeGraphic
 import ir.hfathi.designpattern.structuralPatterns.composite.Ellipse
 import ir.hfathi.designpattern.structuralPatterns.composite.Square
+import ir.hfathi.designpattern.structuralPatterns.facade.FComputer
 
 
 class MainActivity : AppCompatActivity() {
@@ -53,9 +54,16 @@ class MainActivity : AppCompatActivity() {
 
 //        setupChainOfResponsibility()
 
-        setupCommandPattern()
+//        setupCommandPattern()
 
-        setupCompositePattern()
+//        setupCompositePattern()
+
+        setupFacadePattern()
+    }
+
+    private fun setupFacadePattern() {
+        val computer = FComputer()
+        computer.start()
     }
 
     private fun setupCompositePattern() {
