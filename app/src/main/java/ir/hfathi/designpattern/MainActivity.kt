@@ -3,6 +3,8 @@ package ir.hfathi.designpattern
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ir.hfathi.designpattern.behavioralPatterns.builder.Computer
+import ir.hfathi.designpattern.behavioralPatterns.chainOfResponsibility.ATM
+import ir.hfathi.designpattern.behavioralPatterns.chainOfResponsibility.MoneyPile
 import ir.hfathi.designpattern.behavioralPatterns.iterator.Novella
 import ir.hfathi.designpattern.behavioralPatterns.iterator.Novellas
 import ir.hfathi.designpattern.behavioralPatterns.listener.PrintingTextChangedListener
@@ -43,7 +45,21 @@ class MainActivity : AppCompatActivity() {
 //        setupIteratorPattern()
 
 //        setupListenerPattern()
-        setupBuilderPattern()
+//        setupBuilderPattern()
+
+        setupChainOfResponsibility()
+    }
+
+    private fun setupChainOfResponsibility() {
+        val ten = MoneyPile(value = 10, quantity = 6, nextPile = null) // 60
+        val twenty = MoneyPile(value = 20, quantity = 2, nextPile = ten) // 40
+        val fifty = MoneyPile(value = 50, quantity = 2, nextPile = twenty) // 100
+        val hundred = MoneyPile(value = 100, quantity = 1, nextPile = fifty) // 100
+        val atm = ATM(moneyPile = hundred)
+        atm.canWithdraw(amount = 310) // Cannot because behavioral.ATM has only 300
+        atm.canWithdraw(amount = 100) // Can withdraw - 1x100
+        atm.canWithdraw(amount = 165) // Cannot withdraw because behavioral.ATM doesn't has bill with value of 5
+        atm.canWithdraw(amount = 30)  // Can withdraw - 1x20, 2x10
     }
 
     private fun setupBuilderPattern() {
