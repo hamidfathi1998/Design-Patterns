@@ -2,6 +2,8 @@ package ir.hfathi.designpattern
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import ir.hfathi.designpattern.behavioralPatterns.iterator.Novella
+import ir.hfathi.designpattern.behavioralPatterns.iterator.Novellas
 import ir.hfathi.designpattern.behavioralPatterns.singletion.Singleton
 import ir.hfathi.designpattern.behavioralPatterns.state.AlertStateContext
 import ir.hfathi.designpattern.behavioralPatterns.state.Silent
@@ -32,9 +34,15 @@ class MainActivity : AppCompatActivity() {
 
 //        setUpAdapter()
 
-        setupBookingStrategy()
-        setupPrinterStrategy()
+//        setupBookingStrategy()
+//        setupPrinterStrategy()
 
+        setupIteratorPattern()
+    }
+
+    private fun setupIteratorPattern() {
+        val novellas = Novellas(mutableListOf(Novella("Test1"), Novella("Test2")))
+        novellas.forEach { println(it.name) }
     }
 
     private fun setupPrinterStrategy() {
