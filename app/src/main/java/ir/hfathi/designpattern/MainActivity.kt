@@ -22,6 +22,9 @@ import ir.hfathi.designpattern.behavioralPatterns.visitor.*
 import ir.hfathi.designpattern.structuralPatterns.adapter.CelsiusTemperature
 import ir.hfathi.designpattern.structuralPatterns.adapter.FahrenheitTemperature
 import ir.hfathi.designpattern.structuralPatterns.bridge.*
+import ir.hfathi.designpattern.structuralPatterns.composite.CompositeGraphic
+import ir.hfathi.designpattern.structuralPatterns.composite.Ellipse
+import ir.hfathi.designpattern.structuralPatterns.composite.Square
 
 
 class MainActivity : AppCompatActivity() {
@@ -51,6 +54,38 @@ class MainActivity : AppCompatActivity() {
 //        setupChainOfResponsibility()
 
         setupCommandPattern()
+
+        setupCompositePattern()
+    }
+
+    private fun setupCompositePattern() {
+        //Initialize four ellipses
+        val ellipse1 = Ellipse()
+        val ellipse2 = Ellipse()
+        val ellipse3 = Ellipse()
+        val ellipse4 = Ellipse()
+        //Initialize four squares
+        val square1 = Square()
+        val square2 = Square()
+        val square3 = Square()
+        val square4 = Square()
+        //Initialize three composite graphics
+        val graphic = CompositeGraphic()
+        val graphic1 = CompositeGraphic()
+        val graphic2 = CompositeGraphic()
+        //Composes the graphics
+        graphic1.add(ellipse1)
+        graphic1.add(ellipse2)
+        graphic1.add(square1)
+        graphic1.add(ellipse3)
+        graphic2.add(ellipse4)
+        graphic2.add(square2)
+        graphic2.add(square3)
+        graphic2.add(square4)
+        graphic.add(graphic1)
+        graphic.add(graphic2)
+        //Prints the complete graphic
+        graphic.print()
     }
 
     private fun setupCommandPattern() {
