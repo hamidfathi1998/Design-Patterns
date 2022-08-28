@@ -7,6 +7,8 @@ import ir.hfathi.designpattern.behavioralPatterns.state.AlertStateContext
 import ir.hfathi.designpattern.behavioralPatterns.state.Silent
 import ir.hfathi.designpattern.behavioralPatterns.state.Sound
 import ir.hfathi.designpattern.behavioralPatterns.visitor.*
+import ir.hfathi.designpattern.structuralPatterns.adapter.CelsiusTemperature
+import ir.hfathi.designpattern.structuralPatterns.adapter.FahrenheitTemperature
 import ir.hfathi.designpattern.structuralPatterns.bridge.*
 
 
@@ -23,6 +25,17 @@ class MainActivity : AppCompatActivity() {
 //        setUpBridge3()
 
 //        setUpState()
+
+        setUpAdapter()
+    }
+
+    private fun setUpAdapter() {
+        val celsiusTemperature = CelsiusTemperature(0.0)
+        val fahrenheitTemperature = FahrenheitTemperature(celsiusTemperature)
+        celsiusTemperature.temperature = 36.6
+        println("${celsiusTemperature.temperature} C -> ${fahrenheitTemperature.temperature} F")
+        fahrenheitTemperature.temperature = 100.0
+        println("${fahrenheitTemperature.temperature} F -> ${celsiusTemperature.temperature} C")
     }
 
     private fun setUpState() {
