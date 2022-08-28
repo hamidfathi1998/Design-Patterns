@@ -19,6 +19,8 @@ import ir.hfathi.designpattern.behavioralPatterns.strategy.booking.Customer
 import ir.hfathi.designpattern.behavioralPatterns.strategy.booking.TrainBookingStrategy
 import ir.hfathi.designpattern.behavioralPatterns.strategy.printer.Printer
 import ir.hfathi.designpattern.behavioralPatterns.visitor.*
+import ir.hfathi.designpattern.creationalPatterns.abstractFactory.CarFactory
+import ir.hfathi.designpattern.creationalPatterns.abstractFactory.CarType
 import ir.hfathi.designpattern.structuralPatterns.adapter.CelsiusTemperature
 import ir.hfathi.designpattern.structuralPatterns.adapter.FahrenheitTemperature
 import ir.hfathi.designpattern.structuralPatterns.bridge.*
@@ -63,7 +65,15 @@ class MainActivity : AppCompatActivity() {
 
 //        setupFacadePattern()
 
-        setupDecoratorPattern()
+//        setupDecoratorPattern()
+
+        setupAbstractFactory()
+    }
+
+    private fun setupAbstractFactory() {
+        println(CarFactory().buildCar(CarType.MICRO))
+        println(CarFactory().buildCar(CarType.MINI))
+        println(CarFactory().buildCar(CarType.LUXURY))
     }
 
     private fun setupDecoratorPattern() {
