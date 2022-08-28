@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import ir.hfathi.designpattern.behavioralPatterns.builder.Computer
 import ir.hfathi.designpattern.behavioralPatterns.chainOfResponsibility.ATM
 import ir.hfathi.designpattern.behavioralPatterns.chainOfResponsibility.MoneyPile
+import ir.hfathi.designpattern.behavioralPatterns.commandDesign.*
 import ir.hfathi.designpattern.behavioralPatterns.iterator.Novella
 import ir.hfathi.designpattern.behavioralPatterns.iterator.Novellas
 import ir.hfathi.designpattern.behavioralPatterns.listener.PrintingTextChangedListener
@@ -47,7 +48,26 @@ class MainActivity : AppCompatActivity() {
 //        setupListenerPattern()
 //        setupBuilderPattern()
 
-        setupChainOfResponsibility()
+//        setupChainOfResponsibility()
+
+        setupCommandPattern()
+    }
+
+    private fun setupCommandPattern() {
+        // OnCommand is instantiated based on active device supplied by Remote
+        val ce = UniversalRemote().getActiveDevice()
+        val onCommand = OnCommand(ce)
+        val onButton = Button(onCommand)
+        onButton.click()
+
+        val tv = Television()
+        val ss = SoundSystem()
+        val all = ArrayList<ConsumerElectronics>()
+        all.add(tv)
+        all.add(ss)
+        val muteAll = MuteAllCommand(all)
+        val muteAllButton = Button(muteAll)
+        muteAllButton.click()
     }
 
     private fun setupChainOfResponsibility() {
