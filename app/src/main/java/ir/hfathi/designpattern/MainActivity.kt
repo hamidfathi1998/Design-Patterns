@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ir.hfathi.designpattern.behavioralPatterns.iterator.Novella
 import ir.hfathi.designpattern.behavioralPatterns.iterator.Novellas
+import ir.hfathi.designpattern.behavioralPatterns.listener.PrintingTextChangedListener
+import ir.hfathi.designpattern.behavioralPatterns.listener.TextView
 import ir.hfathi.designpattern.behavioralPatterns.singletion.Singleton
 import ir.hfathi.designpattern.behavioralPatterns.state.AlertStateContext
 import ir.hfathi.designpattern.behavioralPatterns.state.Silent
@@ -37,7 +39,16 @@ class MainActivity : AppCompatActivity() {
 //        setupBookingStrategy()
 //        setupPrinterStrategy()
 
-        setupIteratorPattern()
+//        setupIteratorPattern()
+
+        setupListenerPattern()
+    }
+
+    private fun setupListenerPattern() {
+        val textView = TextView()
+        textView.listener = PrintingTextChangedListener()
+        textView.text = "Lorem ipsum"
+        textView.text = "dolor sit amet"
     }
 
     private fun setupIteratorPattern() {
