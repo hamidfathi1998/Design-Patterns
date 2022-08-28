@@ -2,6 +2,7 @@ package ir.hfathi.designpattern
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import ir.hfathi.designpattern.behavioralPatterns.builder.Computer
 import ir.hfathi.designpattern.behavioralPatterns.iterator.Novella
 import ir.hfathi.designpattern.behavioralPatterns.iterator.Novellas
 import ir.hfathi.designpattern.behavioralPatterns.listener.PrintingTextChangedListener
@@ -41,7 +42,13 @@ class MainActivity : AppCompatActivity() {
 
 //        setupIteratorPattern()
 
-        setupListenerPattern()
+//        setupListenerPattern()
+        setupBuilderPattern()
+    }
+
+    private fun setupBuilderPattern() {
+        val comp = Computer("Windows", 8, 14.5, true, false, "Inbulit")
+        println(comp)
     }
 
     private fun setupListenerPattern() {
