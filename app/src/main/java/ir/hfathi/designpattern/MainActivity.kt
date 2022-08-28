@@ -25,6 +25,9 @@ import ir.hfathi.designpattern.structuralPatterns.bridge.*
 import ir.hfathi.designpattern.structuralPatterns.composite.CompositeGraphic
 import ir.hfathi.designpattern.structuralPatterns.composite.Ellipse
 import ir.hfathi.designpattern.structuralPatterns.composite.Square
+import ir.hfathi.designpattern.structuralPatterns.decorator.BananaMilkShake
+import ir.hfathi.designpattern.structuralPatterns.decorator.ConcreteMilkShake
+import ir.hfathi.designpattern.structuralPatterns.decorator.PeanutButterMilkShake
 import ir.hfathi.designpattern.structuralPatterns.facade.FComputer
 
 
@@ -58,7 +61,16 @@ class MainActivity : AppCompatActivity() {
 
 //        setupCompositePattern()
 
-        setupFacadePattern()
+//        setupFacadePattern()
+
+        setupDecoratorPattern()
+    }
+
+    private fun setupDecoratorPattern() {
+        val peanutMilkShake = PeanutButterMilkShake(ConcreteMilkShake())
+        peanutMilkShake.getTaste()
+        val bananaMilkShake = BananaMilkShake(ConcreteMilkShake())
+        bananaMilkShake.getTaste()
     }
 
     private fun setupFacadePattern() {
