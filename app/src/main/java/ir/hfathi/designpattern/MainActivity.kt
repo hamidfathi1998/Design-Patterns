@@ -6,6 +6,10 @@ import ir.hfathi.designpattern.behavioralPatterns.singletion.Singleton
 import ir.hfathi.designpattern.behavioralPatterns.state.AlertStateContext
 import ir.hfathi.designpattern.behavioralPatterns.state.Silent
 import ir.hfathi.designpattern.behavioralPatterns.state.Sound
+import ir.hfathi.designpattern.behavioralPatterns.strategy.booking.CarBookingStrategy
+import ir.hfathi.designpattern.behavioralPatterns.strategy.booking.Customer
+import ir.hfathi.designpattern.behavioralPatterns.strategy.booking.TrainBookingStrategy
+import ir.hfathi.designpattern.behavioralPatterns.strategy.printer.Printer
 import ir.hfathi.designpattern.behavioralPatterns.visitor.*
 import ir.hfathi.designpattern.structuralPatterns.adapter.CelsiusTemperature
 import ir.hfathi.designpattern.structuralPatterns.adapter.FahrenheitTemperature
@@ -26,7 +30,33 @@ class MainActivity : AppCompatActivity() {
 
 //        setUpState()
 
-        setUpAdapter()
+//        setUpAdapter()
+
+        setupBookingStrategy()
+        setupPrinterStrategy()
+
+    }
+
+    private fun setupPrinterStrategy() {
+        val lowerCaseFormatter: (String) -> String = String::toLowerCase
+        val upperCaseFormatter: (String) -> String = String::toUpperCase
+
+        val lower = Printer(strategy = lowerCaseFormatter)
+        println(lower.print("O tempora, o mores!"))
+        val upper = Printer(strategy = upperCaseFormatter)
+        println(upper.print("O tempora, o mores!"))
+    }
+
+    private fun setupBookingStrategy() {
+        //CarBooking Strategy
+        val customer = Customer(CarBookingStrategy())
+        var fare = customer.calculateFare(5)
+        println(fare)
+
+        //TrainBooking Strategy
+        customer.bookingStrategy = TrainBookingStrategy()
+        fare = customer.calculateFare(5)
+        println(fare)
     }
 
     private fun setUpAdapter() {
