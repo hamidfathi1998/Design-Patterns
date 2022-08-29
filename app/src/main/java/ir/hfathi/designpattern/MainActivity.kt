@@ -13,6 +13,8 @@ import ir.hfathi.designpattern.behavioralPatterns.listener.TextView
 import ir.hfathi.designpattern.behavioralPatterns.mediator.ATCMediator
 import ir.hfathi.designpattern.behavioralPatterns.mediator.Flight
 import ir.hfathi.designpattern.behavioralPatterns.mediator.Runway
+import ir.hfathi.designpattern.behavioralPatterns.memento.Caretaker
+import ir.hfathi.designpattern.behavioralPatterns.memento.Originator
 import ir.hfathi.designpattern.behavioralPatterns.singletion.Singleton
 import ir.hfathi.designpattern.behavioralPatterns.state.AlertStateContext
 import ir.hfathi.designpattern.behavioralPatterns.state.Silent
@@ -76,9 +78,34 @@ class MainActivity : AppCompatActivity() {
 
 //        setupAbstractFactory()
 
-        setupFactoryPattern()
+//        setupFactoryPattern()
 
 //        setupMediatorPattern()
+
+        setupMementoPattern()
+    }
+
+    private fun setupMementoPattern() {
+        val originator = Originator()
+        originator.state = "Ironman"
+        var memento = originator.createMemento()
+        val caretaker = Caretaker()
+        caretaker.addMemento(memento)
+
+        originator.state = "Captain America"
+        originator.state = "Hulk"
+        memento = originator.createMemento()
+        caretaker.addMemento(memento)
+        originator.state = "Thor"
+        println("Originator Current State: " + originator.state!!)
+        println("Originator restoring to previous state...")
+        memento = caretaker.getMemento(1)
+        originator.setMemento(memento)
+        println("Originator Current State: " + originator.state!!)
+        println("Again restoring to previous state...")
+        memento = caretaker.getMemento(0)
+        originator.setMemento(memento)
+        println("Originator Current State: " + originator.state!!)
     }
 
     private fun setupMediatorPattern() {
