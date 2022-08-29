@@ -6,6 +6,9 @@ import ir.hfathi.designpattern.behavioralPatterns.builder.Computer
 import ir.hfathi.designpattern.behavioralPatterns.chainOfResponsibility.ATM
 import ir.hfathi.designpattern.behavioralPatterns.chainOfResponsibility.MoneyPile
 import ir.hfathi.designpattern.behavioralPatterns.commandDesign.*
+import ir.hfathi.designpattern.behavioralPatterns.interpreter.AddExpression
+import ir.hfathi.designpattern.behavioralPatterns.interpreter.IntegerContext
+import ir.hfathi.designpattern.behavioralPatterns.interpreter.IntegerVariableExpression
 import ir.hfathi.designpattern.behavioralPatterns.iterator.Novella
 import ir.hfathi.designpattern.behavioralPatterns.iterator.Novellas
 import ir.hfathi.designpattern.behavioralPatterns.listener.PrintingTextChangedListener
@@ -92,8 +95,26 @@ class MainActivity : AppCompatActivity() {
 
 //        setupProxyPattern()
 
-        setupPrototypePattern()
+//        setupPrototypePattern()
+
+        setupInterpreterPattern()
     }
+
+    private fun setupInterpreterPattern() {
+        val context = IntegerContext()
+
+        val a = IntegerVariableExpression(name = 'A')
+        val b = IntegerVariableExpression(name = 'B')
+        val c = IntegerVariableExpression(name = 'C')
+
+        val expression = AddExpression(operand1 = a, operand2 = AddExpression(operand1 = b, operand2 = c)) // a + (b + c)
+        context.assign(expression = a, value = 2)
+        context.assign(expression = b, value = 1)
+        context.assign(expression = c, value = 3)
+
+        println(expression.evaluate(context))
+    }
+
 
     private fun setupPrototypePattern() {
         val bike = Bike()
