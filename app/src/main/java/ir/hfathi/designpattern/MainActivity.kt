@@ -10,6 +10,9 @@ import ir.hfathi.designpattern.behavioralPatterns.iterator.Novella
 import ir.hfathi.designpattern.behavioralPatterns.iterator.Novellas
 import ir.hfathi.designpattern.behavioralPatterns.listener.PrintingTextChangedListener
 import ir.hfathi.designpattern.behavioralPatterns.listener.TextView
+import ir.hfathi.designpattern.behavioralPatterns.mediator.ATCMediator
+import ir.hfathi.designpattern.behavioralPatterns.mediator.Flight
+import ir.hfathi.designpattern.behavioralPatterns.mediator.Runway
 import ir.hfathi.designpattern.behavioralPatterns.singletion.Singleton
 import ir.hfathi.designpattern.behavioralPatterns.state.AlertStateContext
 import ir.hfathi.designpattern.behavioralPatterns.state.Silent
@@ -21,6 +24,10 @@ import ir.hfathi.designpattern.behavioralPatterns.strategy.printer.Printer
 import ir.hfathi.designpattern.behavioralPatterns.visitor.*
 import ir.hfathi.designpattern.creationalPatterns.abstractFactory.CarFactory
 import ir.hfathi.designpattern.creationalPatterns.abstractFactory.CarType
+import ir.hfathi.designpattern.creationalPatterns.factory.Country
+import ir.hfathi.designpattern.creationalPatterns.factory.Euro
+import ir.hfathi.designpattern.creationalPatterns.factory.ICurrency
+import ir.hfathi.designpattern.creationalPatterns.factory.UnitedStatesDollar
 import ir.hfathi.designpattern.structuralPatterns.adapter.CelsiusTemperature
 import ir.hfathi.designpattern.structuralPatterns.adapter.FahrenheitTemperature
 import ir.hfathi.designpattern.structuralPatterns.bridge.*
@@ -67,7 +74,39 @@ class MainActivity : AppCompatActivity() {
 
 //        setupDecoratorPattern()
 
-        setupAbstractFactory()
+//        setupAbstractFactory()
+
+//        setupFactoryPattern()
+
+        setupMediatorPattern()
+    }
+
+    private fun setupMediatorPattern() {
+        val atcMediator = ATCMediator()
+        val sparrow101 = Flight(atcMediator)
+        val mainRunway = Runway(atcMediator)
+        atcMediator.registerFlight(sparrow101)
+        atcMediator.registerRunway(mainRunway)
+        sparrow101.getReady()
+        mainRunway.land()
+        sparrow101.land()
+    }
+
+    private fun setupFactoryPattern() {
+        val noCurrencyCode = "I am not Creative, so Currency Code Available"
+
+        println(currency(Country.Greece)?.code() ?: noCurrencyCode)
+        println(currency(Country.Spain)?.code() ?: noCurrencyCode)
+        println(currency(Country.UnitedStates)?.code() ?: noCurrencyCode)
+        println(currency(Country.UK)?.code() ?: noCurrencyCode)
+    }
+
+    fun currency(country: Country): ICurrency? {
+        return when (country) {
+            Country.Spain, Country.Greece -> Euro()
+            Country.UnitedStates -> UnitedStatesDollar()
+            else -> null
+        }
     }
 
     private fun setupAbstractFactory() {
