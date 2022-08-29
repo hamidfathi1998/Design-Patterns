@@ -76,9 +76,9 @@ class MainActivity : AppCompatActivity() {
 
 //        setupAbstractFactory()
 
-//        setupFactoryPattern()
+        setupFactoryPattern()
 
-        setupMediatorPattern()
+//        setupMediatorPattern()
     }
 
     private fun setupMediatorPattern() {
