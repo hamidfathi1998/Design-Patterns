@@ -32,6 +32,7 @@ import ir.hfathi.designpattern.creationalPatterns.factory.Country
 import ir.hfathi.designpattern.creationalPatterns.factory.Euro
 import ir.hfathi.designpattern.creationalPatterns.factory.ICurrency
 import ir.hfathi.designpattern.creationalPatterns.factory.UnitedStatesDollar
+import ir.hfathi.designpattern.creationalPatterns.prototype.Bike
 import ir.hfathi.designpattern.structuralPatterns.adapter.CelsiusTemperature
 import ir.hfathi.designpattern.structuralPatterns.adapter.FahrenheitTemperature
 import ir.hfathi.designpattern.structuralPatterns.bridge.*
@@ -42,6 +43,7 @@ import ir.hfathi.designpattern.structuralPatterns.decorator.BananaMilkShake
 import ir.hfathi.designpattern.structuralPatterns.decorator.ConcreteMilkShake
 import ir.hfathi.designpattern.structuralPatterns.decorator.PeanutButterMilkShake
 import ir.hfathi.designpattern.structuralPatterns.facade.FComputer
+import ir.hfathi.designpattern.structuralPatterns.proxy.SecuredFile
 
 
 class MainActivity : AppCompatActivity() {
@@ -86,7 +88,31 @@ class MainActivity : AppCompatActivity() {
 
 //        setupMementoPattern()
 
-        setupObserverPattern()
+//        setupObserverPattern()
+
+//        setupProxyPattern()
+
+        setupPrototypePattern()
+    }
+
+    private fun setupPrototypePattern() {
+        val bike = Bike()
+        val basicBike = bike.clone()
+        val advancedBike = makeJaguar(basicBike)
+        println("Prototype Design Pattern: " + advancedBike.model!!)
+    }
+
+    private fun makeJaguar(basicBike: Bike): Bike {
+        basicBike.makeAdvanced()
+        return basicBike
+    }
+
+    private fun setupProxyPattern() {
+        val securedFile = SecuredFile()
+        securedFile.read("readme.md")
+
+        securedFile.password = "secret"
+        securedFile.read("readme.md")
     }
 
     private fun setupObserverPattern() {
