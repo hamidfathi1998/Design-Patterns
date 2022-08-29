@@ -1,4 +1,4 @@
-package ir.hfathi.designpattern.behavioralPatterns.builder
+package ir.hfathi.designpattern.creationalPatterns.builder
 
 class Computer {
     var OS: String

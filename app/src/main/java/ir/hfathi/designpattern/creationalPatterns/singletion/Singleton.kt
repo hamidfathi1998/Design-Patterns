@@ -1,4 +1,4 @@
-package ir.hfathi.designpattern.behavioralPatterns.singletion
+package ir.hfathi.designpattern.creationalPatterns.singletion
 
 public class Singleton private constructor() {
     init { println("This ($this) is a singleton") }
