@@ -1,6 +1,7 @@
 # Design Patterns In Kotlin
 
 Project maintained by Hamid Fathi
+
 This repository lists the design patterns written in the Kotlin programming language.
 
 
