@@ -15,6 +15,8 @@ import ir.hfathi.designpattern.behavioralPatterns.mediator.Flight
 import ir.hfathi.designpattern.behavioralPatterns.mediator.Runway
 import ir.hfathi.designpattern.behavioralPatterns.memento.Caretaker
 import ir.hfathi.designpattern.behavioralPatterns.memento.Originator
+import ir.hfathi.designpattern.behavioralPatterns.observer.Observer
+import ir.hfathi.designpattern.behavioralPatterns.observer.User
 import ir.hfathi.designpattern.behavioralPatterns.singletion.Singleton
 import ir.hfathi.designpattern.behavioralPatterns.state.AlertStateContext
 import ir.hfathi.designpattern.behavioralPatterns.state.Silent
@@ -82,7 +84,16 @@ class MainActivity : AppCompatActivity() {
 
 //        setupMediatorPattern()
 
-        setupMementoPattern()
+//        setupMementoPattern()
+
+        setupObserverPattern()
+    }
+
+    private fun setupObserverPattern() {
+        val observer = Observer()
+        val user = User(observer)
+
+        user.name = "test"
     }
 
     private fun setupMementoPattern() {
