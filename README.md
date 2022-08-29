@@ -40,7 +40,7 @@ Behavioral
 >**Source:** [wikipedia.org](http://en.wikipedia.org/wiki/Behavioral_pattern)
 
 
-[Listener](/app/src/test/kotlin/Listener.kt)
+[Listener](/app/src/main/java/ir/hfathi/designpattern/behavioralPatterns/listener)
 --------
 
 The observer pattern defines a one-to-many dependency between objects so that when one object changes state, all of its dependents are notified and updated automatically.The object which is being watched is called the subject. The objects which are watching the state changes are called observers or listeners.
@@ -80,7 +80,7 @@ Text is changed to: dolor sit amet
 ```
 
 
-[Observer](/app/src/test/kotlin/Listener.kt)
+[Observer](/app/src/main/java/ir/hfathi/designpattern/behavioralPatterns/observer)
 --------
 
 Observer Pattern is one of the behavioral design patterns. An Observer design pattern is useful when you are interested in the state of an object and want to get notified whenever there is any change.
@@ -167,7 +167,7 @@ After change: <no name> -> test
 ```
 
 
-[Interpreter](/app/src/test/kotlin/Listener.kt)
+[Interpreter](/app/src/main/java/ir/hfathi/designpattern/behavioralPatterns/interpreter)
 --------
 
 #### Example
@@ -231,7 +231,7 @@ private fun setupInterpreterPattern() {
 ```
 
 
-[Interpreter](/app/src/test/kotlin/Listener.kt)
+[Iterator](/app/src/main/java/ir/hfathi/designpattern/behavioralPatterns/iterator)
 --------
 Iterator Pattern is a relatively simple and frequently used design pattern. There are a lot of data structures/collections available in every language. Each collection must provide an iterator that lets it iterate through its objects.
 
@@ -269,7 +269,7 @@ Test2
 
 
 
-[Strategy](/app/src/test/kotlin/Listener.kt)
+[Strategy](/app/src/main/java/ir/hfathi/designpattern/behavioralPatterns/strategy)
 --------
 
 In the Strategy pattern, a class behavior or its algorithm can be changed at run time. This type of design pattern comes under behavior pattern.In the Strategy pattern, we create objects which represent various strategies and a context object whose behavior varies as per its strategy object. The strategy object changes the executing algorithm of the context object.
@@ -334,7 +334,7 @@ Calculating fares using TrainBookingStrategy
 ```
 
 
-[Command](/app/src/test/kotlin/Listener.kt)
+[Command](/app/src/main/java/ir/hfathi/designpattern/behavioralPatterns/commandDesign)
 --------
 The Command design pattern is used to encapsulate a request as an object and pass to an invoker, wherein the invoker does not know how to service the request but uses the encapsulated command to perform an action.
 
@@ -451,7 +451,7 @@ Television is muted!
 Sound system is muted!
 ```
 
-[State](/app/src/test/kotlin/Listener.kt)
+[State](/app/src/main/java/ir/hfathi/designpattern/behavioralPatterns/state)
 --------
 The State design pattern is used when an Object changes its behavior based on its internal state.
 
@@ -535,7 +535,7 @@ silent...
 tu..tu..tu..tu
 ```
 
-[Chain of Responsibility](/app/src/test/kotlin/Listener.kt)
+[Chain of Responsibility](/app/src/main/java/ir/hfathi/designpattern/behavioralPatterns/chainOfResponsibility)
 --------
 Chain of responsibility pattern is used to achieve loose coupling in software design where a request from the client is passed to a chain of objects to process them. Later, the object in the chain will decide themselves who will be processing the request and whether the request is required to be sent to the next object in the chain or not.
 
@@ -591,7 +591,7 @@ Can withdraw: false
 Can withdraw: true
 ```
 
-[Visitor](/app/src/test/kotlin/Listener.kt)
+[Visitor](/app/src/main/java/ir/hfathi/designpattern/behavioralPatterns/visitor)
 --------
 The Visitor pattern is used when we have to perform an operation on a group of similar kind of Objects.
 
@@ -637,15 +637,14 @@ class NameVisitor(var name: String = "") : PlanetVisitor {
 
 ### Usage
 ```kotlin
-    private fun setUpVisitorPattern() {
-        val planets =
-            mutableListOf(PlanetAlderaan(), PlanetCoruscant(), PlanetTatooine(), MoonJedah())
-        val visitor = NameVisitor()
-        planets.forEach {
-            it.accept(visitor)
-            println(visitor.name)
-        }
+private fun setUpVisitorPattern() {
+    val planets = mutableListOf(PlanetAlderaan(), PlanetCoruscant(), PlanetTatooine(), MoonJedah())
+    val visitor = NameVisitor()
+    planets.forEach {
+        it.accept(visitor)
+        println(visitor.name)
     }
+}
 ```
 
 ### Output
@@ -656,7 +655,7 @@ Tatooine
 Jedah
 ```
 
-[Mediator](/app/src/test/kotlin/Listener.kt)
+[Mediator](/app/src/main/java/ir/hfathi/designpattern/behavioralPatterns/mediator)
 --------
 ***Mediator pattern is used to reduce communication complexity between multiple objects or classes.***
 
@@ -754,16 +753,16 @@ class ATCMediator : IATCMediator {
 
 ### Usage
 ```kotlin
-    private fun setupMediatorPattern() {
-        val atcMediator = ATCMediator()
-        val sparrow101 = Flight(atcMediator)
-        val mainRunway = Runway(atcMediator)
-        atcMediator.registerFlight(sparrow101)
-        atcMediator.registerRunway(mainRunway)
-        sparrow101.getReady()
-        mainRunway.land()
-        sparrow101.land()
-    }
+private fun setupMediatorPattern() {
+    val atcMediator = ATCMediator()
+    val sparrow101 = Flight(atcMediator)
+    val mainRunway = Runway(atcMediator)
+    atcMediator.registerFlight(sparrow101)
+    atcMediator.registerRunway(mainRunway)
+    sparrow101.getReady()
+    mainRunway.land()
+    sparrow101.land()
+}
 ```
 
 ### Output
@@ -773,7 +772,7 @@ Landing permission granted...
 Landing done....
 ```
 
-[Memento](/app/src/test/kotlin/Listener.kt)
+[Memento](/app/src/main/java/ir/hfathi/designpattern/behavioralPatterns/memento)
 --------
 Memento pattern is used to restore the state of an object to a previous state. As your application is progressing, you may want to save checkpoints in your application and restore back to those checkpoints later.
 
@@ -829,27 +828,27 @@ class Caretaker {
 ### Usage
 ```kotlin
 private fun setupMementoPattern() {
-        val originator = Originator()
-        originator.state = "Ironman"
-        var memento = originator.createMemento()
-        val caretaker = Caretaker()
-        caretaker.addMemento(memento)
+    val originator = Originator()
+    originator.state = "Ironman"
+    var memento = originator.createMemento()
+    val caretaker = Caretaker()
+    caretaker.addMemento(memento)
 
-        originator.state = "Captain America"
-        originator.state = "Hulk"
-        memento = originator.createMemento()
-        caretaker.addMemento(memento)
-        originator.state = "Thor"
-        println("Originator Current State: " + originator.state!!)
-        println("Originator restoring to previous state...")
-        memento = caretaker.getMemento(1)
-        originator.setMemento(memento)
-        println("Originator Current State: " + originator.state!!)
-        println("Again restoring to previous state...")
-        memento = caretaker.getMemento(0)
-        originator.setMemento(memento)
-        println("Originator Current State: " + originator.state!!)
-    }
+    originator.state = "Captain America"
+    originator.state = "Hulk"
+    memento = originator.createMemento()
+    caretaker.addMemento(memento)
+    originator.state = "Thor"
+    println("Originator Current State: " + originator.state!!)
+    println("Originator restoring to previous state...")
+    memento = caretaker.getMemento(1)
+    originator.setMemento(memento)
+    println("Originator Current State: " + originator.state!!)
+    println("Again restoring to previous state...")
+    memento = caretaker.getMemento(0)
+    originator.setMemento(memento)
+    println("Originator Current State: " + originator.state!!)
+}
 ```
 
 ### Output
@@ -870,7 +869,7 @@ Creational
 >**Source:** [wikipedia.org](http://en.wikipedia.org/wiki/Creational_pattern)
 
 
-[Builder ](/app/src/test/kotlin/Listener.kt)
+[Builder](/app/src/main/java/ir/hfathi/designpattern/creationalPatterns/builder)
 --------
 
 ***The problem to Solve :***
@@ -928,10 +927,10 @@ battery : $battery"
 
 ### Usage
 ```kotlin
- private fun setupBuilderPattern() {
-        val comp = Computer("Windows", 8, 14.5, true, false, "Inbulit")
-        println(comp)
- }
+private fun setupBuilderPattern() {
+    val comp = Computer("Windows", 8, 14.5, true, false, "Inbulit")
+    println(comp)
+}
 ```
 
 ### Output
@@ -939,7 +938,7 @@ battery : $battery"
 The required configuration is : OS : Windows  RAM : 8  screenSize : screenSize  externalMouse : true  externalKeyboard : false  battery : Inbulit
 ```
 
-[Factory ](/app/src/test/kotlin/Listener.kt)
+[Factory](/app/src/main/java/ir/hfathi/designpattern/creationalPatterns/factory)
 --------
 
 A Factory Pattern or Factory Method Pattern says that just define an interface or abstract class for creating an object but let the subclasses decide which class to instantiate.
@@ -1003,22 +1002,22 @@ fun currency(country: Country): ICurrency? {
 
 ### Usage
 ```kotlin
-    private fun setupFactoryPattern() {
-        val noCurrencyCode = "I am not Creative, so Currency Code Available"
+private fun setupFactoryPattern() {
+    val noCurrencyCode = "I am not Creative, so Currency Code Available"
 
-        println(currency(Country.Greece)?.code() ?: noCurrencyCode)
-        println(currency(Country.Spain)?.code() ?: noCurrencyCode)
-        println(currency(Country.UnitedStates)?.code() ?: noCurrencyCode)
-        println(currency(Country.UK)?.code() ?: noCurrencyCode)
-    }
+    println(currency(Country.Greece)?.code() ?: noCurrencyCode)
+    println(currency(Country.Spain)?.code() ?: noCurrencyCode)
+    println(currency(Country.UnitedStates)?.code() ?: noCurrencyCode)
+    println(currency(Country.UK)?.code() ?: noCurrencyCode)
+}
 
-    private fun currency(country: Country): ICurrency? {
-        return when (country) {
-            Country.Spain, Country.Greece -> Euro()
-            Country.UnitedStates -> UnitedStatesDollar()
-            else -> null
-        }
+private fun currency(country: Country): ICurrency? {
+    return when (country) {
+        Country.Spain, Country.Greece -> Euro()
+        Country.UnitedStates -> UnitedStatesDollar()
+        else -> null
     }
+}
 ```
 
 ### Output
@@ -1029,7 +1028,7 @@ USD
 "I am not Creative, so Currency Code Available"
 ```
 
-[Singleton ](/app/src/test/kotlin/Listener.kt)
+[Singleton](/app/src/main/java/ir/hfathi/designpattern/creationalPatterns/singleton)
 --------
 
 Singleton pattern is a design solution where an application wants to have one and only one instance of any class, in all possible scenarios without any exceptional condition.
@@ -1057,14 +1056,14 @@ public class Singleton private constructor() {
 ### Usage
 ```kotlin
 private fun setUpSingletonPattern() {
-        val first = Singleton.instance  // This (Singleton@7daf6ecc) is a
-        // singleton
-        first.b = "hello singleton"
+    val first = Singleton.instance  // This (Singleton@7daf6ecc) is a
+    // singleton
+    first.b = "hello singleton"
 
-        val second = Singleton.instance
-        println(first.b)        // hello singleton
-        println(second.b)        // hello singleton
-    }
+    val second = Singleton.instance
+    println(first.b)        // hello singleton
+    println(second.b)        // hello singleton
+}
 ```
 
 ### Output
@@ -1075,7 +1074,7 @@ hello singleton
 ```
 
 
-[Abstract Factory ](/app/src/test/kotlin/Listener.kt)
+[Abstract Factory](/app/src/main/java/ir/hfathi/designpattern/creationalPatterns/abstractFactory)
 --------
 
 Abstract Factory Pattern says that just define an interface or abstract class for creating families of related (or dependent) objects but without specifying their concrete sub-classes.
@@ -1223,10 +1222,10 @@ class CarFactory {
 ### Usage
 ```kotlin
 private fun setupAbstractFactoryPattern() {
-        println(CarFactory().buildCar(CarType.MICRO))
-        println(CarFactory().buildCar(CarType.MINI))
-        println(CarFactory().buildCar(CarType.LUXURY))
-    }
+    println(CarFactory().buildCar(CarType.MICRO))
+    println(CarFactory().buildCar(CarType.MINI))
+    println(CarFactory().buildCar(CarType.LUXURY))
+}
 ```
 
 ### Output
@@ -1240,7 +1239,7 @@ CarModel - LUXURY located in INDIA
 ```
 
 
-[Prototype ](/app/src/test/kotlin/Listener.kt)
+[Prototype](/app/src/main/java/ir/hfathi/designpattern/creationalPatterns/prototype)
 --------
 When creating an object is time-consuming and a costly affair and you already have a most similar object instance in hand, then you go for prototype pattern. Instead of going through a time-consuming process to create a complex object, just copy the existing similar object and modify it according to your needs.
 
@@ -1289,17 +1288,17 @@ open class Bike : Cloneable {
 
 ### Usage
 ```kotlin
-    private fun setupPrototypePattern() {
-        val bike = Bike()
-        val basicBike = bike.clone()
-        val advancedBike = makeJaguar(basicBike)
-        println("Prototype Design Pattern: " + advancedBike.model!!)
-    }
+private fun setupPrototypePattern() {
+    val bike = Bike()
+    val basicBike = bike.clone()
+    val advancedBike = makeJaguar(basicBike)
+    println("Prototype Design Pattern: " + advancedBike.model!!)
+}
 
-    private fun makeJaguar(basicBike: Bike): Bike {
-        basicBike.makeAdvanced()
-        return basicBike
-    }
+private fun makeJaguar(basicBike: Bike): Bike {
+    basicBike.makeAdvanced()
+    return basicBike
+}
 ```
 
 ### Output
@@ -1314,7 +1313,7 @@ Structural
 >
 >**Source:** [wikipedia.org](http://en.wikipedia.org/wiki/Structural_pattern)
 
-[Adapter](/app/src/test/kotlin/Listener.kt)
+[Adapter](/app/src/main/java/ir/hfathi/designpattern/structuralPatterns/adapter)
 --------
 Adapter pattern works as a bridge between two incompatible interfaces. This type of design pattern comes under structural pattern as this pattern combines the capability of two independent interfaces.
 
@@ -1342,13 +1341,13 @@ class FahrenheitTemperature(var celsiusTemperature: CelsiusTemperature) : Temper
 ### Usage
 ```kotlin
 private fun setUpAdapterPattern() {
-        val celsiusTemperature = CelsiusTemperature(0.0)
-        val fahrenheitTemperature = FahrenheitTemperature(celsiusTemperature)
-        celsiusTemperature.temperature = 36.6
-        println("${celsiusTemperature.temperature} C -> ${fahrenheitTemperature.temperature} F")
-        fahrenheitTemperature.temperature = 100.0
-        println("${fahrenheitTemperature.temperature} F -> ${celsiusTemperature.temperature} C")
-    }
+    val celsiusTemperature = CelsiusTemperature(0.0)
+    val fahrenheitTemperature = FahrenheitTemperature(celsiusTemperature)
+    celsiusTemperature.temperature = 36.6
+    println("${celsiusTemperature.temperature} C -> ${fahrenheitTemperature.temperature} F")
+    fahrenheitTemperature.temperature = 100.0
+    println("${fahrenheitTemperature.temperature} F -> ${celsiusTemperature.temperature} C")
+}
 ```
 
 ### Output
@@ -1357,7 +1356,7 @@ private fun setUpAdapterPattern() {
 100.0 F -> 37.77777777777778 C
 ```
 
-[Bridge](/app/src/test/kotlin/Listener.kt)
+[Bridge](/app/src/main/java/ir/hfathi/designpattern/structuralPatterns/bridge)
 --------
 The bridge pattern allows the Abstraction and the Implementation to be developed independently and the client code can access only the Abstraction part without being concerned about the Implementation part.
 
@@ -1406,11 +1405,11 @@ class VacuumCleaner : Appliance {
 ### Usage
 ```kotlin
 private fun setUpBridgePatternSampleOne() {
-        val tvRemoteControl = RemoteControl(appliance = TV())
-        tvRemoteControl.turnOn()
-        val fancyVacuumCleanerRemoteControl = RemoteControl(appliance = VacuumCleaner())
-        fancyVacuumCleanerRemoteControl.turnOn()
-    }
+    val tvRemoteControl = RemoteControl(appliance = TV())
+    tvRemoteControl.turnOn()
+    val fancyVacuumCleanerRemoteControl = RemoteControl(appliance = VacuumCleaner())
+    fancyVacuumCleanerRemoteControl.turnOn()
+}
 ```
 
 ### Output
@@ -1419,7 +1418,7 @@ TV turned on
 VacuumCleaner turned on
 ```
 
-[Decorator](/app/src/test/kotlin/Listener.kt)
+[Decorator](/app/src/main/java/ir/hfathi/designpattern/structuralPatterns/decorator)
 --------
 The Decorator pattern allows a user to add new functionality to an existing object without altering its structure. This type of design pattern comes under structural pattern as this pattern acts as a wrapper to the existing class.
 
@@ -1490,11 +1489,11 @@ public class PeanutButterMilkShake(m:MilkShake) : MilkShakeDecorator(m){
 ### Usage
 ```kotlin
 private fun setupDecoratorPattern() {
-        val peanutMilkShake = PeanutButterMilkShake(ConcreteMilkShake())
-        peanutMilkShake.getTaste()
-        val bananaMilkShake = BananaMilkShake(ConcreteMilkShake())
-        bananaMilkShake.getTaste()
-    }
+    val peanutMilkShake = PeanutButterMilkShake(ConcreteMilkShake())
+    peanutMilkShake.getTaste()
+    val bananaMilkShake = BananaMilkShake(ConcreteMilkShake())
+    bananaMilkShake.getTaste()
+}
 ```
 
 ### Output
@@ -1509,7 +1508,7 @@ It’s milk !
 
 
 
-[Facade](/app/src/test/kotlin/Listener.kt)
+[Facade](/app/src/main/java/ir/hfathi/designpattern/structuralPatterns/facade)
 --------
 Facade pattern hides the complexities of the system and provides an interface to the client using which the client can access the system. This type of design pattern comes under structural pattern as this pattern adds an interface to the existing system to hide its complexities.
 
@@ -1554,9 +1553,9 @@ class Computer(val processor: CPU = CPU(), val ram: Memory = Memory(), val hd: H
 ### Usage
 ```kotlin
 private fun setupFacadePattern() {
-        val computer = FComputer()
-        computer.start()
-    }
+    val computer = FComputer()
+    computer.start()
+}
 ```
 
 ### Output
@@ -1568,7 +1567,7 @@ Executing.
 ```
 
 
-[Protection Proxy](/app/src/test/kotlin/Listener.kt)
+[Protection Proxy](/app/src/main/java/ir/hfathi/designpattern/structuralPatterns/proxy)
 --------
 The Proxy Pattern is used to create a representative object that controls access to another object, which may be remote, expensive to create or in need of being secured.
 
@@ -1610,12 +1609,12 @@ class SecuredFile : File {
 ### Usage
 ```kotlin
 private fun setupProxyPattern() {
-        val securedFile = SecuredFile()
-        securedFile.read("readme.md")
+    val securedFile = SecuredFile()
+    securedFile.read("readme.md")
 
-        securedFile.password = "secret"
-        securedFile.read("readme.md")
-    }
+    securedFile.password = "secret"
+    securedFile.read("readme.md")
+}
 ```
 
 ### Output
@@ -1625,7 +1624,7 @@ Password is correct: secret
 Reading file: readme.md
 ```
 
-[Composite](/app/src/test/kotlin/Listener.kt)
+[Composite](/app/src/main/java/ir/hfathi/designpattern/structuralPatterns/composite)
 --------
 Composite pattern is a partitioning design pattern and describes a group of objects that are treated the same way as a single instance of the same type of object. The intent of a composite is to 'compose' objects into tree structures to represent part-whole hierarchies. It allows you to have a tree structure and ask each node in the tree structure to perform a task.
 
@@ -1661,34 +1660,34 @@ class Square : Graphic {
 ### Usage
 ```kotlin
 private fun setupCompositePattern() {
-        //Initialize four ellipses
-        val ellipse1 = Ellipse()
-        val ellipse2 = Ellipse()
-        val ellipse3 = Ellipse()
-        val ellipse4 = Ellipse()
-        //Initialize four squares
-        val square1 = Square()
-        val square2 = Square()
-        val square3 = Square()
-        val square4 = Square()
-        //Initialize three composite graphics
-        val graphic = CompositeGraphic()
-        val graphic1 = CompositeGraphic()
-        val graphic2 = CompositeGraphic()
-        //Composes the graphics
-        graphic1.add(ellipse1)
-        graphic1.add(ellipse2)
-        graphic1.add(square1)
-        graphic1.add(ellipse3)
-        graphic2.add(ellipse4)
-        graphic2.add(square2)
-        graphic2.add(square3)
-        graphic2.add(square4)
-        graphic.add(graphic1)
-        graphic.add(graphic2)
-        //Prints the complete graphic
-        graphic.print()
-    }
+    //Initialize four ellipses
+    val ellipse1 = Ellipse()
+    val ellipse2 = Ellipse()
+    val ellipse3 = Ellipse()
+    val ellipse4 = Ellipse()
+    //Initialize four squares
+    val square1 = Square()
+    val square2 = Square()
+    val square3 = Square()
+    val square4 = Square()
+    //Initialize three composite graphics
+    val graphic = CompositeGraphic()
+    val graphic1 = CompositeGraphic()
+    val graphic2 = CompositeGraphic()
+    //Composes the graphics
+    graphic1.add(ellipse1)
+    graphic1.add(ellipse2)
+    graphic1.add(square1)
+    graphic1.add(ellipse3)
+    graphic2.add(ellipse4)
+    graphic2.add(square2)
+    graphic2.add(square3)
+    graphic2.add(square4)
+    graphic.add(graphic1)
+    graphic.add(graphic2)
+    //Prints the complete graphic
+    graphic.print()
+}
 ```
 
 ### Output
